@@ -1,16 +1,34 @@
-# Recursive function to find factorial of a number
-def factorial(n):
+#challenge 2.1
+class bankaccount:
+  def __init__(self,account_number,account_holder_name,initial_balance=0.0):
+    self.__account_number = account_number
+    self.__account_holder_name = account_holder_name
+    self.__account_balance = initial_balance
 
-    # base case: if 'n'is 0 or 1
-    if n < 1:
-        return 1
+  def deposit(self,amount):
+    if amount > 0:
+      self.__account_balance += amount
+      print("deposited ₹{}. New balance: ₹{}".format(amount,self.__account_balance))
 
-    # use the recurrrnce relation
-    return n *factorial(n - 1)
+    else:
+      print("invalid deposit amount. please deposit a positive amount.")
 
+  def withdraw(self,amount):
+    if amount > 0 and amount<= self.__account_balance:
+      self.__account_balance -= amount
+      print("withdraw ₹{}. New balance: ₹{}".format(amount,self.__account_balance))
 
-if __name__ == '__main__':
+    else:
+      print("invalid withdrawal amount or insuffient balance.")
 
-    n = 5
-    print(f'The Factorial of {n} is', factorial(n))
-    
+  def display_balance(self):
+    print("account balance for {} (account#{}): ₹{}".format(self.__account_holder_name,self.__account_number,self.__account_balance))
+
+account=bankaccount(account_number="987654321",
+                   account_holder_name="jai",
+                   initial_balance=6000.0)
+
+account.display_balance()
+account.deposit(500.0)
+account.withdraw(200.0)
+account.display_balance()
